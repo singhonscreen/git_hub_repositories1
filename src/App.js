@@ -1,24 +1,33 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react'
+import { Router } from 'react-router-dom';
+import { Route, Switch } from 'react-router';
 import './App.css';
+import GitHubPage from './components/GitHubPage';
+import SearchPage from './components/SearchPage';
+import Repos from './components/Repos';
+import history from './components/history';
 
 function App() {
+  
+  const [state, setState] = useState()
+  const [loading, setLoading] = useState(false)
+  const [searchData, setSearchData] = useState()
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router history={history}>
+        <Switch>
+          <Route exact path="/" >
+            <SearchPage setState={setState}  setSearchData = {setSearchData} state={state} searchData = {searchData} />
+          </Route>
+          <Route path={`/users/${searchData}/repos`} >
+            <GitHubPage searchData={searchData} setLoading = {setLoading} loading={loading} />
+            <Repos searchData={searchData} setLoading = {setLoading}  />
+          </Route>
+
+        </Switch>
+      </Router>
+    </>
   );
 }
 
