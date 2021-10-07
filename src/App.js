@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Router } from 'react-router-dom';
-import { Route, Switch } from 'react-router';
+import { Route, Switch, Redirect } from 'react-router';
 import './App.css';
 import GitHubPage from './components/GitHubPage';
 import SearchPage from './components/SearchPage';
@@ -24,7 +24,7 @@ function App() {
             <GitHubPage searchData={searchData} setLoading = {setLoading} loading={loading} />
             <Repos searchData={searchData} setLoading = {setLoading}  />
           </Route>
-
+          <Redirect to ="/" />
         </Switch>
       </Router>
     </>
