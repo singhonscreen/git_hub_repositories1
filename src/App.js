@@ -17,7 +17,7 @@ function App() {
     <>
       <Router history={history}>
         <Switch>
-          <Route exact path="/" >
+          <Route exact path="/githubapi_pagination_data" >
             <SearchPage setState={setState}  setSearchData = {setSearchData} state={state} searchData = {searchData} />
           </Route>
           <Route path={`/users/${searchData}/repos`} >
